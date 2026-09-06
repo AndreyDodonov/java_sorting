@@ -8,7 +8,7 @@
 * **Стратегии сортировки:** имя (@github_username)
 * **Кастомная коллекция:** имя (@github_username)
 * **Ввод/Вывод (I/O):** имя (@github_username)
-* **Многопоточность + Тесты:** имя (@github_username)
+* **Многопоточность:** имя (@github_username)
 
 ---
 
@@ -16,7 +16,12 @@
 
 * **Java Version:** 21
 * **Сборщик:** Maven
-* **Именование веток:** `feature/название-фичи` (например, `feature/sorting-strategies`)
+* **Именование веток:**
+    * `feature/main-integration` — тимлид: финальная сборка Main, интеграция модулей
+    * `feature/sorting-strategies` — оставшиеся 3 алгоритма сортировки (Strategy)
+    * `feature/custom-collection` — кастомная коллекция (Доп.3)
+    * `feature/io` — файл/рандом/ручной ввод, запись результатов (Доп.2)
+    * `feature/concurrency` — многопоточный подсчёт вхождений (Доп.4)
 * **Конвенции кода:**
     * CamelCase для классов (`BusStrategy`), lowerCamelCase для переменных (`busCount`).
     * Все методы и переменные на английском языке.
