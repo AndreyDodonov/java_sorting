@@ -13,7 +13,6 @@ import app.validation.ValidationException;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class Main {
     public static void main(String[] args) {
 
@@ -31,10 +30,10 @@ public class Main {
         while (running) {
             // пока не готов пакет io из выбора только рандомная генерация
             System.out.println("""
-                === Меню ===
-                1. Сгенерировать и отсортировать автобусы
-                0. Выход
-                """);
+                    === Меню ===
+                    1. Сгенерировать и отсортировать автобусы
+                    0. Выход
+                    """);
             String choice = scanner.nextLine().trim();
             switch (choice) {
                 case "1" -> runSortDemo(scanner, dataSource, sortContext);
@@ -45,10 +44,7 @@ public class Main {
         System.out.println("работа завершена!");
     }
 
-    private static void runSortDemo(
-        Scanner scanner,
-        DataSource dataSource,
-        SortContext sortContext) {
+    private static void runSortDemo(Scanner scanner, DataSource dataSource, SortContext sortContext) {
         try {
             System.out.println("Сколько автобусов сгенерировать?");
             int count = Integer.parseInt(scanner.nextLine().trim());

@@ -14,15 +14,14 @@ public class BusTest {
 
     @Test
     void builderIncorrectMileage() {
-        Assertions.assertThrows(ValidationException.class, () ->
-            Bus.builder().regNumber("A123").model("Liaz").routeNumber(12).mileage(-10).build());
+        Assertions.assertThrows(ValidationException.class,
+                () -> Bus.builder().regNumber("A123").model("Liaz").routeNumber(12).mileage(-10).build());
     }
 
     @Test
     void builderIncorrectRouteNumber() {
-        Assertions.assertThrows(ValidationException.class, () ->
-            Bus.builder().regNumber("A123").model("Liaz").routeNumber(-12).mileage(10).build());
+        Assertions.assertThrows(ValidationException.class,
+                () -> Bus.builder().regNumber("A123").model("Liaz").routeNumber(-12).mileage(10).build());
     }
-
 
 }

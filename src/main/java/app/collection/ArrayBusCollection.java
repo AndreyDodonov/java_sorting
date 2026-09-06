@@ -19,8 +19,10 @@ public class ArrayBusCollection implements BusCollection {
     @Override
     public void add(Bus bus) {
         // проверить уникальность regNumber среди elements[0..size-1],
-        // при дубликате — throw new ValidationException(...), специальный класс для ошибок валидации
-        // если сейчас в main генерировать автобусы, то дубли по госномерам попадают в финальный список, а должны
+        // при дубликате — throw new ValidationException(...), специальный класс для
+        // ошибок валидации
+        // если сейчас в main генерировать автобусы, то дубли по госномерам попадают в
+        // финальный список, а должны
         // отсекаться как раз здесь
         throw new UnsupportedOperationException("TODO: реализовать add()");
     }

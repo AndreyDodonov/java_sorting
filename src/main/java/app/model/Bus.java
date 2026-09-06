@@ -7,10 +7,12 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Модель автобуса.
  * <ul>
- *  <li>Иммутабельная — единственный способ создать объект: Bus.builder()...build().</li>
- *  <li>id генерируется автоматически (AtomicLong), не задаётся снаружи.</li>
- *  <li>Уникальность regNumber в рамках коллекции проверяется НЕ здесь, а в BusCollection.add() </li>
- *   Builder валидирует только форму одного объекта, не знает о других уже созданных Bus.
+ * <li>Иммутабельная — единственный способ создать объект:
+ * Bus.builder()...build().</li>
+ * <li>id генерируется автоматически (AtomicLong), не задаётся снаружи.</li>
+ * <li>Уникальность regNumber в рамках коллекции проверяется НЕ здесь, а в
+ * BusCollection.add()</li> Builder валидирует только форму одного объекта, не
+ * знает о других уже созданных Bus.
  * </ul>
  */
 public final class Bus {
@@ -40,7 +42,7 @@ public final class Bus {
     @Override
     public String toString() {
         return "Bus{id=%d, regNumber='%s', routeNumber=%d, model='%s', mileage=%d, operational=%b, note='%s'}"
-            .formatted(id, regNumber, routeNumber, model, mileage, operational, note);
+                .formatted(id, regNumber, routeNumber, model, mileage, operational, note);
     }
 
     public long getId() {
@@ -124,7 +126,8 @@ public final class Bus {
                 throw new ValidationException("Номер маршрута не может быть ниже 1: " + routeNumber);
             }
             if (note != null && note.length() > 200) {
-                throw new ValidationException("Примечание не может быть длиннее 200 символов, а сейчас: " + note.length());
+                throw new ValidationException(
+                        "Примечание не может быть длиннее 200 символов, а сейчас: " + note.length());
             }
 
             return new Bus(this);
