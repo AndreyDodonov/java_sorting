@@ -1,17 +1,20 @@
 package app;
 
+import java.util.List;
+import java.util.Scanner;
+
 import app.io.DataSource;
 import app.io.RandomDataSource;
 import app.model.Bus;
 import app.model.BusField;
 import app.sort.BubbleSortStrategy;
 import app.sort.BusComparators;
+import app.sort.InsertionSortStrategy;
+import app.sort.QuickSortStrategy;
+import app.sort.SelectionSortStrategy;
 import app.sort.SortContext;
 import app.sort.SortResult;
 import app.validation.ValidationException;
-
-import java.util.List;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -63,6 +66,17 @@ public class Main {
                 case 1 -> BusField.REG_NUMBER;
                 case 2 -> BusField.MODEL;
                 case 3 -> BusField.MILEAGE;
+                default -> throw new ValidationException("нет такого пункта");
+            };
+
+            System.out.println(
+                    "Алгоритм сортировки: \n 1 - Bubble Sort \n 2 - Selection Sort \n 3 - Insertion Sort \n 4 - Quick Sort");
+            int sortChoice = Integer.parseInt(scanner.nextLine().trim());
+            sortContext = switch (sortChoice) {
+                case 1 -> new SortContext(new BubbleSortStrategy());
+                case 2 -> new SortContext(new SelectionSortStrategy());
+                case 3 -> new SortContext(new InsertionSortStrategy());
+                case 4 -> new SortContext(new QuickSortStrategy());
                 default -> throw new ValidationException("нет такого пункта");
             };
 

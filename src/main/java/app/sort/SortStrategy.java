@@ -1,12 +1,13 @@
 package app.sort;
 
-import app.model.Bus;
-
 import java.util.Comparator;
 import java.util.List;
 
+import app.model.Bus;
+
 /**
- * Владелец модуля: впиши своё имя/ник github (feature/sorting-strategies).
+ * Владелец модуля: Радмир Сулейманов https://github.com/radmirs
+ * (feature/sorting-strategies).
  *
  * <p>
  * Нужно реализовать минимум 4 алгоритма (например Bubble, Selection, Insertion,
@@ -37,4 +38,10 @@ public interface SortStrategy {
      * Название алгоритма — для вывода в консоли при сравнении времени выполнения.
      */
     String name();
+
+    default void swap(List<Bus> list, int i, int j) {
+        Bus tmp = list.get(i);
+        list.set(i, list.get(j));
+        list.set(j, tmp);
+    }
 }

@@ -1,10 +1,10 @@
 package app.sort;
 
-import app.model.Bus;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import app.model.Bus;
 
 /**
  * пример реализации Как образец паттерна: копируем вход, сравниваем только
@@ -32,12 +32,6 @@ public class BubbleSortStrategy implements SortStrategy {
             }
         }
         return result;
-    }
-
-    private void swap(List<Bus> list, int i, int j) {
-        Bus tmp = list.get(i);
-        list.set(i, list.get(j));
-        list.set(j, tmp);
     }
 
     @Override
