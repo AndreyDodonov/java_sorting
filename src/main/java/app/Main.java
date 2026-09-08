@@ -25,10 +25,6 @@ public class Main {
         // пока жёстко зашит RandomDataSource, до готовности io-модуля
         DataSource dataSource = new RandomDataSource();
 
-        // TODO: выбор одной из 4 стратегий через меню — пока только Bubble Sort,
-        // до готовности остальных 3 алгоритмов сортировки
-        SortContext sortContext = new SortContext(new BubbleSortStrategy());
-
         boolean running = true;
         while (running) {
             // пока не готов пакет io из выбора только рандомная генерация
@@ -39,7 +35,7 @@ public class Main {
                     """);
             String choice = scanner.nextLine().trim();
             switch (choice) {
-                case "1" -> runSortDemo(scanner, dataSource, sortContext);
+                case "1" -> runSortDemo(scanner, dataSource);
                 case "0" -> running = false;
                 default -> System.out.println("такого пункта меню нет, попробуй выбрать из списка");
             }
@@ -47,7 +43,7 @@ public class Main {
         System.out.println("работа завершена!");
     }
 
-    private static void runSortDemo(Scanner scanner, DataSource dataSource, SortContext sortContext) {
+    private static void runSortDemo(Scanner scanner, DataSource dataSource) {
         try {
             System.out.println("Сколько автобусов сгенерировать?");
             int count = Integer.parseInt(scanner.nextLine().trim());
@@ -72,7 +68,7 @@ public class Main {
             System.out.println(
                     "Алгоритм сортировки: \n 1 - Bubble Sort \n 2 - Selection Sort \n 3 - Insertion Sort \n 4 - Quick Sort");
             int sortChoice = Integer.parseInt(scanner.nextLine().trim());
-            sortContext = switch (sortChoice) {
+            SortContext sortContext = switch (sortChoice) {
                 case 1 -> new SortContext(new BubbleSortStrategy());
                 case 2 -> new SortContext(new SelectionSortStrategy());
                 case 3 -> new SortContext(new InsertionSortStrategy());
