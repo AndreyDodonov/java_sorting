@@ -5,7 +5,7 @@ import app.model.Bus;
 import java.util.List;
 
 /**
- * Владелец модуля: впиши своё имя/ник гидхаба (feature/custom-collection)
+ * Владелец модуля: isin314(feature/custom-collection)
  * <p>
  * НЕЛЬЗЯ оборачивать java.util.ArrayList/LinkedList внутри (по условию задачи)
  * <p>
