@@ -1,8 +1,10 @@
 package app.collection;
 
 import app.model.Bus;
+import app.validation.ValidationException;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,19 +14,44 @@ import java.util.List;
  *
  */
 public class ArrayBusCollection implements BusCollection {
+    private static final int DEFAULT_CAPACITY = 10;
+    private Bus[] elements;
+    private int size = 0;
 
-    private final Bus[] elements = new Bus[10]; // стартовый размер — можно менять
-    private final int size = 0;
+    ArrayBusCollection() {
+        this.elements = new Bus[DEFAULT_CAPACITY];
+    }
+
+    private Bus[] grow() {
+        int newCapacity = elements.length + elements.length >> 1;
+        Bus[] newElements = new Bus[newCapacity];
+        for (int i = 0; i < size; ++i) {
+            newElements[i] = elements[i];
+        }
+        return newElements;
+    }
 
     @Override
     public void add(Bus bus) {
+
+        for (Bus element : elements) {
+            if (element.getRegNumber() == bus.getRegNumber()) {
+                String message = "regNumber " + bus.getRegNumber() + " already exist.";
+                throw new ValidationException(message);
+            }
+            if (size == elements.length) {
+                elements = grow();
+            }
+        }
+        elements[size] = bus;
+        size += 1;
+
         // проверить уникальность regNumber среди elements[0..size-1],
         // при дубликате — throw new ValidationException(...), специальный класс для
         // ошибок валидации
         // если сейчас в main генерировать автобусы, то дубли по госномерам попадают в
         // финальный список, а должны
         // отсекаться как раз здесь
-        throw new UnsupportedOperationException("TODO: реализовать add()");
     }
 
     @Override
@@ -34,6 +61,10 @@ public class ArrayBusCollection implements BusCollection {
 
     @Override
     public List<Bus> toList() {
-        throw new UnsupportedOperationException("TODO: реализовать toList()");
+        List<Bus> list = new ArrayList<>();
+        for (Bus element : elements) {
+            list.add(element);
+        }
+        return list;
     }
 }
