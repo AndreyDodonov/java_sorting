@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Function;
 
-
 public class OccurenceCounterImpl implements OccurenceCounter {
 
     @Override
@@ -50,15 +49,9 @@ public class OccurenceCounterImpl implements OccurenceCounter {
         return chunks;
     }
 
-
-    private <T> long checkBuses(List<List<Bus>> chunksOfBusList,
-                                Function<Bus, T> extractor,
-                                Object targetValue) {
-        return chunksOfBusList.parallelStream()
-            .flatMap(List::stream)
-            .filter(bus -> Objects.equals(targetValue, extractor.apply(bus)))
-            .count();
+    private <T> long checkBuses(List<List<Bus>> chunksOfBusList, Function<Bus, T> extractor, Object targetValue) {
+        return chunksOfBusList.parallelStream().flatMap(List::stream)
+                .filter(bus -> Objects.equals(targetValue, extractor.apply(bus))).count();
     }
-
 
 }
