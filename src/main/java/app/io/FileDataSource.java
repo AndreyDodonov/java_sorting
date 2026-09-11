@@ -13,10 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Чтение и построчная валидация данных из файла. Невалидные строки —
- * пропускаем и копим в сводку (см. DataSource).
- * Пустые строки игнорируются.
- * Считаем именно успешно загруженные автобусы.
+ * Чтение и построчная валидация данных из файла. Невалидные строки — пропускаем
+ * и копим в сводку (см. DataSource). Пустые строки игнорируются. Считаем именно
+ * успешно загруженные автобусы.
  */
 public class FileDataSource implements DataSource {
 
@@ -44,26 +43,16 @@ public class FileDataSource implements DataSource {
 
                     BusFileDto dto = gson.fromJson(line, BusFileDto.class);
 
-                    Bus bus = Bus.builder()
-                        .routeNumber(dto.routeNumber())
-                        .regNumber(dto.regNumber())
-                        .model(dto.model())
-                        .mileage(dto.mileage())
-                        .note(dto.note())
-                        .operational(dto.operational())
-                        .build();
+                    Bus bus = Bus.builder().routeNumber(dto.routeNumber()).regNumber(dto.regNumber()).model(dto.model())
+                            .mileage(dto.mileage()).note(dto.note()).operational(dto.operational()).build();
 
                     loaded.add(bus);
                 } catch (JsonSyntaxException | ValidationException e) {
-                    rejectedWarnings.add(
-                        "Строка: " + line + " не валидна. Причина: " + e.getMessage()
-                    );
+                    rejectedWarnings.add("Строка: " + line + " не валидна. Причина: " + e.getMessage());
                 }
             }
         } catch (IOException e) {
-            throw new IllegalStateException(
-                "Не удалось прочитать файл: " + path, e
-            );
+            throw new IllegalStateException("Не удалось прочитать файл: " + path, e);
         }
 
         return new LoadResult(loaded, rejectedWarnings);

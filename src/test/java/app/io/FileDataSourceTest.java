@@ -29,8 +29,8 @@ public class FileDataSourceTest {
 
         DataSource.LoadResult result = dataSource.load(3);
 
-//        System.out.println("Загружено: " + result.loaded().size());
-//        System.out.println("Отклонено: " + result.rejectedWarnings());
+        // System.out.println("Загружено: " + result.loaded().size());
+        // System.out.println("Отклонено: " + result.rejectedWarnings());
 
         assertEquals(2, result.loaded().size());
         assertEquals(1, result.rejectedWarnings().size());
@@ -50,8 +50,8 @@ public class FileDataSourceTest {
 
         DataSource.LoadResult result = dataSource.load(3);
 
-//        System.out.println("Запрошено: 3");
-//        System.out.println("Загружено: " + result.loaded().size());
+        // System.out.println("Запрошено: 3");
+        // System.out.println("Загружено: " + result.loaded().size());
 
         assertEquals(2, result.loaded().size());
         assertTrue(result.rejectedWarnings().isEmpty());

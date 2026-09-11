@@ -8,12 +8,11 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Ручной ввод через Scanner. При невалидных данных — сразу сообщаем об
- * ошибке и просим ввести заново, НЕ пропускаем запись молча в отличие от
- * чтения из файла или рандомной генерации (см. DataSource).
- * Для каждого поля отдельно проверяется корректность формата ввода.
- * Валидация выполняется {@link Bus.Builder}.
- * При ошибке валидации текущий автобус вводится заново.
+ * Ручной ввод через Scanner. При невалидных данных — сразу сообщаем об ошибке и
+ * просим ввести заново, НЕ пропускаем запись молча в отличие от чтения из файла
+ * или рандомной генерации (см. DataSource). Для каждого поля отдельно
+ * проверяется корректность формата ввода. Валидация выполняется
+ * {@link Bus.Builder}. При ошибке валидации текущий автобус вводится заново.
  */
 public class ManualDataSource implements DataSource {
 
@@ -49,14 +48,8 @@ public class ManualDataSource implements DataSource {
                 String note = readString("Примечание: ");
                 boolean operational = readBoolean("Автобус в эксплуатации (true/false): ");
 
-                return Bus.builder()
-                    .routeNumber(routeNumber)
-                    .regNumber(regNumber)
-                    .model(model)
-                    .mileage(mileage)
-                    .note(note)
-                    .operational(operational)
-                    .build();
+                return Bus.builder().routeNumber(routeNumber).regNumber(regNumber).model(model).mileage(mileage)
+                        .note(note).operational(operational).build();
 
             } catch (ValidationException e) {
                 System.out.println("Ошибка валидации: " + e.getMessage());

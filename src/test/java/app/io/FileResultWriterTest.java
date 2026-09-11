@@ -22,35 +22,20 @@ class FileResultWriterTest {
 
         // Уже существующая запись в файле
         String existingJson = """
-            {"routeNumber":10,"regNumber":"А111ВС77","model":"PAZ","mileage":50000,"note":"","operational":true}
-            """;
+                {"routeNumber":10,"regNumber":"А111ВС77","model":"PAZ","mileage":50000,"note":"","operational":true}
+                """;
 
         Files.writeString(file, existingJson);
 
-        Bus bus1 = Bus.builder()
-            .routeNumber(15)
-            .regNumber("А123ВС77")
-            .model("PAZ")
-            .mileage(120000)
-            .note("")
-            .operational(true)
-            .build();
+        Bus bus1 = Bus.builder().routeNumber(15).regNumber("А123ВС77").model("PAZ").mileage(120000).note("")
+                .operational(true).build();
 
-        Bus bus2 = Bus.builder()
-            .routeNumber(27)
-            .regNumber("В456ОР78")
-            .model("LiAZ")
-            .mileage(85000)
-            .note("После ТО")
-            .operational(true)
-            .build();
+        Bus bus2 = Bus.builder().routeNumber(27).regNumber("В456ОР78").model("LiAZ").mileage(85000).note("После ТО")
+                .operational(true).build();
 
         FileResultWriter writer = new FileResultWriter();
 
-        writer.appendResults(
-            List.of(bus1, bus2),
-            file.toString()
-        );
+        writer.appendResults(List.of(bus1, bus2), file.toString());
 
         List<String> lines = Files.readAllLines(file);
 
@@ -59,13 +44,11 @@ class FileResultWriterTest {
         assertEquals(existingJson.trim(), lines.get(0));
 
         assertEquals(
-            "{\"routeNumber\":15,\"regNumber\":\"А123ВС77\",\"model\":\"PAZ\",\"mileage\":120000,\"note\":\"\",\"operational\":true}",
-            lines.get(1)
-        );
+                "{\"routeNumber\":15,\"regNumber\":\"А123ВС77\",\"model\":\"PAZ\",\"mileage\":120000,\"note\":\"\",\"operational\":true}",
+                lines.get(1));
 
         assertEquals(
-            "{\"routeNumber\":27,\"regNumber\":\"В456ОР78\",\"model\":\"LiAZ\",\"mileage\":85000,\"note\":\"После ТО\",\"operational\":true}",
-            lines.get(2)
-        );
+                "{\"routeNumber\":27,\"regNumber\":\"В456ОР78\",\"model\":\"LiAZ\",\"mileage\":85000,\"note\":\"После ТО\",\"operational\":true}",
+                lines.get(2));
     }
 }

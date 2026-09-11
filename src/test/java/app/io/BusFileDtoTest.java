@@ -13,15 +13,15 @@ class BusFileDtoTest {
     @Test
     void shouldDeserializeJsonToDto() {
         String json = """
-            {
-                "routeNumber": 15,
-                "regNumber": "A123BC",
-                "model": "PAZ",
-                "mileage": 120000,
-                "note": "После ТО",
-                "operational": true
-            }
-            """;
+                {
+                    "routeNumber": 15,
+                    "regNumber": "A123BC",
+                    "model": "PAZ",
+                    "mileage": 120000,
+                    "note": "После ТО",
+                    "operational": true
+                }
+                """;
 
         BusFileDto dto = gson.fromJson(json, BusFileDto.class);
 
@@ -35,14 +35,7 @@ class BusFileDtoTest {
 
     @Test
     void shouldSerializeDtoToJson() {
-        BusFileDto dto = new BusFileDto(
-            15,
-            "A123BC",
-            "PAZ",
-            120000,
-            "После ТО",
-            true
-        );
+        BusFileDto dto = new BusFileDto(15, "A123BC", "PAZ", 120000, "После ТО", true);
 
         String json = gson.toJson(dto);
 

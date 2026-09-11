@@ -11,13 +11,13 @@ public class ManualDataSourceTest {
     @Test
     void shouldLoadBusFromManualInput() {
         String input = """
-            15
-            A123BC
-            PAZ
-            120000
-            После ТО
-            true
-            """;
+                15
+                A123BC
+                PAZ
+                120000
+                После ТО
+                true
+                """;
 
         Scanner scanner = new Scanner(input);
         ManualDataSource dataSource = new ManualDataSource(scanner);
@@ -40,29 +40,29 @@ public class ManualDataSourceTest {
     @Test
     void shouldHandleInvalidManualInput() {
         String input = """
-            abc
-            15
-            A123BC
-            PAZ
-            120000
-            После ТО
-            maybe
-            true
+                abc
+                15
+                A123BC
+                PAZ
+                120000
+                После ТО
+                maybe
+                true
 
-            -5
-            B456CD
-            LiAZ
-            85000
-            Исправен
-            false
+                -5
+                B456CD
+                LiAZ
+                85000
+                Исправен
+                false
 
-            27
-            C789EF
-            LiAZ
-            85000
-            После ТО
-            true
-            """;
+                27
+                C456FF
+                LiAZ
+                85000
+                После ТО
+                true
+                """;
 
         Scanner scanner = new Scanner(input);
         ManualDataSource dataSource = new ManualDataSource(scanner);
@@ -77,7 +77,7 @@ public class ManualDataSourceTest {
 
         Bus second = result.loaded().get(1);
         assertEquals(27, second.getRouteNumber());
-        assertEquals("C789EF", second.getRegNumber());
+        assertEquals("C456FF", second.getRegNumber());
 
         assertTrue(result.rejectedWarnings().isEmpty());
     }
