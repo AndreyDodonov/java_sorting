@@ -1,6 +1,7 @@
 package app.collection;
 
 import app.model.Bus;
+import app.validation.ValidationException;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -27,7 +28,13 @@ public interface BusCollection {
 
     static BusCollection fromStream(Stream<Bus> stream) {
         BusCollection collection = new ArrayBusCollection();
-        stream.forEach(collection::add);
+        stream.forEach(bus -> {
+            try {
+                collection.add(bus);
+            } catch (ValidationException e) {
+                // скипаем невалидные данные, обработаются с накоплением в другом месте
+            }
+        });
         return collection;
     }
 }

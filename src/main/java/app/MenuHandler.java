@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Обработка пользовательского ввода в Main.
- * userInput - собираем данные
- * sortData - получаем то что собрали на вводе, сортируем и выдаём SortResult для вывода в main
+ * Обработка пользовательского ввода в Main. userInput - собираем данные
+ * sortData - получаем то что собрали на вводе, сортируем и выдаём SortResult
+ * для вывода в main
  */
 @SuppressWarnings("java:S106")
 public class MenuHandler {
@@ -34,7 +34,7 @@ public class MenuHandler {
         return new UserInput(strategy, field, loaded);
     }
 
-    //выбор источника
+    // выбор источника
     private static List<Bus> selectSource(Scanner userInputScanner) {
         System.out.println("Источник данных: \n 1 - рандом \n 2 - файл \n 3 - вручную");
         int choice = Integer.parseInt(userInputScanner.nextLine().trim());
@@ -45,11 +45,12 @@ public class MenuHandler {
             default -> throw new ValidationException("нет такого пункта");
         };
 
-        // можно было сделать в случае с файлом просто Integer.MAX_VALUE, но раз уж это заодно
+        // можно было сделать в случае с файлом просто Integer.MAX_VALUE, но раз уж это
+        // заодно
         // тестовый стенд - пусть будет выбор максимального количества записей
         System.out.println(dataSource instanceof FileDataSource
-            ? "Сколько максимум записей прочитать из файла?"
-            : "Сколько автобусов сгенерировать?");
+                ? "Сколько максимум записей прочитать из файла?"
+                : "Сколько автобусов сгенерировать?");
         int count = Integer.parseInt(userInputScanner.nextLine().trim());
 
         DataSource.LoadResult loadResult = dataSource.load(count);
@@ -66,7 +67,7 @@ public class MenuHandler {
         return input.isEmpty() ? "buses.json" : input;
     }
 
-    //выбор поля сортировки
+    // выбор поля сортировки
     private static BusField selectFieldSort(Scanner userInputScanner) {
         System.out.println("Сортировать по: \n 1 - гос номер \n 2 - модель \n 3 - пробег");
         int sortChoice = Integer.parseInt(userInputScanner.nextLine().trim());
@@ -78,10 +79,10 @@ public class MenuHandler {
         };
     }
 
-    //выбор алгоритма
+    // выбор алгоритма
     private static SortStrategy selectAlgorithm(Scanner userInputScanner) {
         System.out.println(
-            "Алгоритм сортировки: \n 1 - Bubble Sort \n 2 - Selection Sort \n 3 - Insertion Sort \n 4 - Quick Sort");
+                "Алгоритм сортировки: \n 1 - Bubble Sort \n 2 - Selection Sort \n 3 - Insertion Sort \n 4 - Quick Sort");
         int sortChoice = Integer.parseInt(userInputScanner.nextLine().trim());
         return switch (sortChoice) {
             case 1 -> new BubbleSortStrategy();
@@ -130,6 +131,5 @@ public class MenuHandler {
         }
         return threadCount;
     }
-
 
 }

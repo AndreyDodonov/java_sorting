@@ -13,11 +13,11 @@ public class Main {
         boolean running = true;
         while (running) {
             System.out.println("""
-                === Меню ===
-                1. Загрузка и сортировка автобусов
-                2. Подсчёт количества вхождений
-                0. Выход
-                """);
+                    === Меню ===
+                    1. Загрузка и сортировка автобусов
+                    2. Подсчёт количества вхождений
+                    0. Выход
+                    """);
             String choice = scanner.nextLine().trim();
             switch (choice) {
                 case "1" -> runSortDemo(scanner);

@@ -23,7 +23,8 @@ public class RandomDataSource implements DataSource {
 
         for (int i = 0; i < count; i++) {
             try {
-                Bus bus = Bus.builder().regNumber("A-" + (100 + random.nextInt(900)))
+                char letter = (char) ('A' + random.nextInt(26));
+                Bus bus = Bus.builder().regNumber(letter + "-" + (100 + random.nextInt(900)))
                         .routeNumber(1 + random.nextInt(50)).model("Model-" + (char) ('A' + random.nextInt(5)))
                         .mileage(random.nextInt(300_000)).operational(random.nextBoolean()).build();
                 loaded.add(bus);
