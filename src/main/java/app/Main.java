@@ -6,6 +6,7 @@ import app.validation.ValidationException;
 import java.util.Scanner;
 
 public class Main {
+    @SuppressWarnings("java:S106")
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -30,6 +31,7 @@ public class Main {
         scanner.close();
     }
 
+    @SuppressWarnings("java:S106")
     private static void runSortDemo(Scanner scanner) {
         try {
 
@@ -47,6 +49,7 @@ public class Main {
         }
     }
 
+    @SuppressWarnings("java:S106")
     private static void runOccurrenceDemo(Scanner scanner) {
         try {
             long count = MenuHandler.countOccurrences(scanner);

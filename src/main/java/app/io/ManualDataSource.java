@@ -14,6 +14,7 @@ import java.util.Scanner;
  * проверяется корректность формата ввода. Валидация выполняется
  * {@link Bus.Builder}. При ошибке валидации текущий автобус вводится заново.
  */
+@SuppressWarnings("java:S106")
 public class ManualDataSource implements DataSource {
 
     private final Scanner scanner;

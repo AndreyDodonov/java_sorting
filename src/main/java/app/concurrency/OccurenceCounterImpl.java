@@ -19,15 +19,12 @@ public class OccurenceCounterImpl implements OccurenceCounter {
         List<List<Bus>> chunksOfBusList = splitIntoChunks(data, threadCount);
 
         switch (field) {
-            case REG_NUMBER -> {
-                countValues.set(checkBuses(chunksOfBusList, Bus::getRegNumber, targetValue));
-            }
-            case MODEL -> {
-                countValues.set(checkBuses(chunksOfBusList, Bus::getModel, targetValue));
-            }
-            case MILEAGE -> {
-                countValues.set(checkBuses(chunksOfBusList, Bus::getMileage, targetValue));
-            }
+            case REG_NUMBER -> countValues.set(checkBuses(chunksOfBusList, Bus::getRegNumber, targetValue));
+
+            case MODEL -> countValues.set(checkBuses(chunksOfBusList, Bus::getModel, targetValue));
+
+            case MILEAGE -> countValues.set(checkBuses(chunksOfBusList, Bus::getMileage, targetValue));
+
         }
 
         return countValues.get();
