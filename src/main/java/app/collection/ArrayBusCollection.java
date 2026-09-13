@@ -3,8 +3,8 @@ package app.collection;
 import app.model.Bus;
 import app.validation.ValidationException;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -23,7 +23,7 @@ public class ArrayBusCollection implements BusCollection {
     }
 
     private Bus[] grow() {
-        int newCapacity = elements.length + elements.length >> 1;
+        int newCapacity = elements.length + (elements.length >> 1);
         Bus[] newElements = new Bus[newCapacity];
         for (int i = 0; i < size; ++i) {
             newElements[i] = elements[i];
@@ -33,25 +33,18 @@ public class ArrayBusCollection implements BusCollection {
 
     @Override
     public void add(Bus bus) {
-
-        for (Bus element : elements) {
-            if (element.getRegNumber() == bus.getRegNumber()) {
-                String message = "regNumber " + bus.getRegNumber() + " already exist.";
+        for (int i = 0; i < size; i++) {
+            if (elements[i].getRegNumber().equals(bus.getRegNumber())) {
+                String message = "regNumber " + bus.getRegNumber() + " уже существует.";
                 throw new ValidationException(message);
             }
-            if (size == elements.length) {
-                elements = grow();
-            }
+        }
+        if (size == elements.length) {
+            elements = grow();
         }
         elements[size] = bus;
         size += 1;
 
-        // проверить уникальность regNumber среди elements[0..size-1],
-        // при дубликате — throw new ValidationException(...), специальный класс для
-        // ошибок валидации
-        // если сейчас в main генерировать автобусы, то дубли по госномерам попадают в
-        // финальный список, а должны
-        // отсекаться как раз здесь
     }
 
     @Override
@@ -62,8 +55,8 @@ public class ArrayBusCollection implements BusCollection {
     @Override
     public List<Bus> toList() {
         List<Bus> list = new ArrayList<>();
-        for (Bus element : elements) {
-            list.add(element);
+        for (int i = 0; i < size; i++) {
+            list.add(elements[i]);
         }
         return list;
     }

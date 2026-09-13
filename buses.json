@@ -1,0 +1,6 @@
+{"regNumber":"A101","routeNumber":12,"model":"Liaz","mileage":120000,"note":"","operational":true}
+{"regNumber":"A102","routeNumber":7,"model":"Setra","mileage":85000,"note":"после ТО","operational":true}
+{"regNumber":"A103","routeNumber":34,"model":"Ikarus","mileage":250000,"note":"","operational":false}
+{"regNumber":"","routeNumber":5,"model":"Neoplan","mileage":50000,"note":"","operational":true}
+{"regNumber":"A104","routeNumber":21,"model":"Volvo","mileage":-100,"note":"","operational":true}
+{"regNumber":"A105","routeNumber":9,"model":"MAN","mileage":175000,"note":"срочно на ремонт","operational":false}

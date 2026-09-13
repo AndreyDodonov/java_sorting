@@ -3,6 +3,7 @@ package app.collection;
 import app.model.Bus;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Владелец модуля: isin314(feature/custom-collection)
@@ -23,4 +24,10 @@ public interface BusCollection {
     int size();
 
     List<Bus> toList();
+
+    static BusCollection fromStream(Stream<Bus> stream) {
+        BusCollection collection = new ArrayBusCollection();
+        stream.forEach(collection::add);
+        return collection;
+    }
 }
