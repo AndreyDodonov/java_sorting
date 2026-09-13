@@ -4,7 +4,7 @@ import app.validation.ValidationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class BusTest {
+class BusTest {
 
     @Test
     void builderAllCorrectData() {

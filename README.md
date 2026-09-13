@@ -1,4 +1,10 @@
+[![Quality gate status](https://sonarcloud.io/api/project_badges/measure?project=AndreyDodonov_java_sorting&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=AndreyDodonov_java_sorting)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=AndreyDodonov_java_sorting&metric=coverage)](https://sonarcloud.io/summary/new_code?id=AndreyDodonov_java_sorting)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=AndreyDodonov_java_sorting&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=AndreyDodonov_java_sorting)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=AndreyDodonov_java_sorting&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=AndreyDodonov_java_sorting)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=AndreyDodonov_java_sorting&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=AndreyDodonov_java_sorting)
 # Учебный проект: Консольная сортировка (Класс Bus)
+
 
 Программа для сортировки кастомных объектов с использованием паттерна «Стратегия».
 

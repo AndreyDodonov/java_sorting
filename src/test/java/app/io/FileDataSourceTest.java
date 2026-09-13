@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class FileDataSourceTest {
+class FileDataSourceTest {
     @Test
     void shouldLoadBusesFromFile() {
         String path = "src/test/resources/valid_buses.jsonl";
