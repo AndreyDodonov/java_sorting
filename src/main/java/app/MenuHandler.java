@@ -1,5 +1,8 @@
 package app;
 
+import java.util.List;
+import java.util.Scanner;
+
 import app.collection.BusCollection;
 import app.concurrency.OccurenceCounter;
 import app.concurrency.OccurenceCounterImpl;
@@ -9,11 +12,16 @@ import app.io.ManualDataSource;
 import app.io.RandomDataSource;
 import app.model.Bus;
 import app.model.BusField;
-import app.sort.*;
+import app.sort.BubbleSortStrategy;
+import app.sort.BusComparators;
+import app.sort.EvenOnlySortDecorator;
+import app.sort.InsertionSortStrategy;
+import app.sort.QuickSortStrategy;
+import app.sort.SelectionSortStrategy;
+import app.sort.SortContext;
+import app.sort.SortResult;
+import app.sort.SortStrategy;
 import app.validation.ValidationException;
-
-import java.util.List;
-import java.util.Scanner;
 
 /**
  * Обработка пользовательского ввода в Main. userInput - собираем данные
@@ -31,6 +39,9 @@ public class MenuHandler {
         List<Bus> loaded = selectSource(userInputScanner);
         BusField field = selectFieldSort(userInputScanner);
         SortStrategy strategy = selectAlgorithm(userInputScanner);
+        if (field == BusField.MILEAGE) {
+            strategy = selectEvenMode(userInputScanner, strategy);
+        }
         return new UserInput(strategy, field, loaded);
     }
 
@@ -92,6 +103,16 @@ public class MenuHandler {
             default -> throw new ValidationException("нет такого пункта");
         };
 
+    }
+
+    private static SortStrategy selectEvenMode(Scanner userInputScanner, SortStrategy strategy) {
+        System.out.println("Режим сортировки: \n 1 - Все автобусы \n 2 - Только чётные пробеги");
+        int choice = Integer.parseInt(userInputScanner.nextLine().trim());
+        return switch (choice) {
+            case 1 -> strategy;
+            case 2 -> new EvenOnlySortDecorator(strategy);
+            default -> throw new ValidationException("нет такого пункта");
+        };
     }
 
     // сортируем и отдаём отсортированный результат
