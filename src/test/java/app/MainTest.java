@@ -39,7 +39,7 @@ class MainTest {
     // в целом рандом тестить такое себе )
     @Test
     void userInput_withValidRandomFlow_returnsDataWithoutExceptions() {
-        Scanner scanner = new Scanner("1\n5\n3\n1\n");
+        Scanner scanner = new Scanner("1\n5\n3\n1\n1\n");
 
         MenuHandler.UserInput input = MenuHandler.userInput(scanner);
 
@@ -63,8 +63,5 @@ class MainTest {
 
         assertThrows(ValidationException.class, () -> MenuHandler.userInput(scanner));
     }
-
-
-
 
 }

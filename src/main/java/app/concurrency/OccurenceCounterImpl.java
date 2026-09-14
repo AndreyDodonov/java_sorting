@@ -2,6 +2,7 @@ package app.concurrency;
 
 import app.model.Bus;
 import app.model.BusField;
+import app.validation.ValidationException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,10 @@ public class OccurenceCounterImpl implements OccurenceCounter {
 
     @Override
     public long count(List<Bus> data, BusField field, Object targetValue, int threadCount) throws InterruptedException {
+
+        if (threadCount <= 0) {
+            throw new ValidationException("Количество потоков должно быть больше 0: " + threadCount);
+        }
 
         AtomicLong countValues = new AtomicLong();
 
