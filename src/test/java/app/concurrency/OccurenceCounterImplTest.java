@@ -1,11 +1,10 @@
 package app.concurrency;
 
+import app.collection.BusCollection;
 import app.model.Bus;
 import app.model.BusField;
 import app.validation.ValidationException;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -18,7 +17,7 @@ class OccurenceCounterImplTest {
         Bus bus2 = Bus.builder().regNumber("A124").model("Liaz").routeNumber(1).mileage(2000).build();
         Bus bus3 = Bus.builder().regNumber("A125").model("Liaz").routeNumber(1).mileage(3000).build();
 
-        List<Bus> loaded = List.of(bus1, bus2, bus3);
+        BusCollection loaded = BusCollection.of(bus1, bus2, bus3);
 
         OccurenceCounter counter = new OccurenceCounterImpl();
         long result = counter.count(loaded, BusField.MILEAGE, 2000, 2);
@@ -32,7 +31,7 @@ class OccurenceCounterImplTest {
         Bus bus2 = Bus.builder().regNumber("A124").model("Liaz").routeNumber(1).mileage(2000).build();
         Bus bus3 = Bus.builder().regNumber("A125").model("Liaz-2").routeNumber(1).mileage(3000).build();
 
-        List<Bus> loaded = List.of(bus1, bus2, bus3);
+        BusCollection loaded = BusCollection.of(bus1, bus2, bus3);
 
         OccurenceCounter counter = new OccurenceCounterImpl();
         long result = counter.count(loaded, BusField.MODEL, "Liaz", 2);
@@ -46,7 +45,7 @@ class OccurenceCounterImplTest {
         Bus bus2 = Bus.builder().regNumber("A124").model("Liaz").routeNumber(1).mileage(2000).build();
         Bus bus3 = Bus.builder().regNumber("A125").model("Liaz-2").routeNumber(1).mileage(3000).build();
 
-        List<Bus> loaded = List.of(bus1, bus2, bus3);
+        BusCollection loaded = BusCollection.of(bus1, bus2, bus3);
 
         OccurenceCounter counter = new OccurenceCounterImpl();
         long result = counter.count(loaded, BusField.REG_NUMBER, "A123", 2);
@@ -60,7 +59,7 @@ class OccurenceCounterImplTest {
         Bus bus2 = Bus.builder().regNumber("A124").model("Liaz").routeNumber(1).mileage(2000).build();
         Bus bus3 = Bus.builder().regNumber("A125").model("Liaz").routeNumber(1).mileage(3000).build();
 
-        List<Bus> loaded = List.of(bus1, bus2, bus3);
+        BusCollection loaded = BusCollection.of(bus1, bus2, bus3);
 
         OccurenceCounter counter = new OccurenceCounterImpl();
         long result = counter.count(loaded, BusField.MILEAGE, 2, 2);
@@ -76,7 +75,7 @@ class OccurenceCounterImplTest {
         Bus bus3 = Bus.builder().regNumber("A125").model("Liaz").routeNumber(1).mileage(3000).build();
         Bus bus4 = Bus.builder().regNumber("A126").model("Liaz").routeNumber(1).mileage(3000).build();
 
-        List<Bus> loaded = List.of(bus1, bus2, bus3, bus4);
+        BusCollection loaded = BusCollection.of(bus1, bus2, bus3, bus4);
 
         OccurenceCounter counter = new OccurenceCounterImpl();
         long result = counter.count(loaded, BusField.MILEAGE, 3000, 2);
@@ -88,7 +87,7 @@ class OccurenceCounterImplTest {
     @Test
     void emptyList_zeroOccurences() throws InterruptedException {
 
-        List<Bus> loaded = List.of();
+        BusCollection loaded = BusCollection.of();
 
         OccurenceCounter counter = new OccurenceCounterImpl();
         long result = counter.count(loaded, BusField.MILEAGE, 3000, 2);
@@ -104,7 +103,7 @@ class OccurenceCounterImplTest {
         Bus bus3 = Bus.builder().regNumber("A125").model("Liaz").routeNumber(1).mileage(3000).build();
         Bus bus4 = Bus.builder().regNumber("A126").model("Liaz").routeNumber(1).mileage(3000).build();
 
-        List<Bus> loaded = List.of(bus1, bus2, bus3, bus4);
+        BusCollection loaded = BusCollection.of(bus1, bus2, bus3, bus4);
 
         OccurenceCounter counter = new OccurenceCounterImpl();
 

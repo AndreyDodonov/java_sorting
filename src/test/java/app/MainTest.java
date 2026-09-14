@@ -1,5 +1,6 @@
 package app;
 
+import app.collection.BusCollection;
 import app.model.Bus;
 import app.model.BusField;
 import app.sort.BubbleSortStrategy;
@@ -7,7 +8,6 @@ import app.sort.SortResult;
 import app.validation.ValidationException;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,10 +19,10 @@ class MainTest {
         Bus bus2 = Bus.builder().regNumber("A124").model("Liaz").routeNumber(1).mileage(2000).build();
         Bus bus3 = Bus.builder().regNumber("A125").model("Liaz").routeNumber(1).mileage(3000).build();
 
-        List<Bus> loaded = List.of(bus1, bus2, bus3);
+        BusCollection loaded = BusCollection.of(bus1, bus2, bus3);
         SortResult result = MenuHandler.sortData(new BubbleSortStrategy(), BusField.MILEAGE, loaded);
 
-        List<Bus> sorted = result.sorted();
+        BusCollection sorted = result.sorted();
 
         assertTrue(sorted.get(0).getMileage() <= sorted.get(1).getMileage());
         assertTrue(sorted.get(1).getMileage() <= sorted.get(2).getMileage());

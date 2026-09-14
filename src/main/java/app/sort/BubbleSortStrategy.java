@@ -1,9 +1,9 @@
 package app.sort;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
+import app.collection.ArrayBusCollection;
+import app.collection.BusCollection;
 import app.model.Bus;
 
 /**
@@ -15,8 +15,8 @@ import app.model.Bus;
 public class BubbleSortStrategy implements SortStrategy {
 
     @Override
-    public List<Bus> sort(List<Bus> input, Comparator<Bus> comparator) {
-        List<Bus> result = new ArrayList<>(input);
+    public BusCollection sort(BusCollection input, Comparator<Bus> comparator) {
+        BusCollection result = new ArrayBusCollection(input);
         int n = result.size();
 
         for (int i = 0; i < n - 1; i++) {

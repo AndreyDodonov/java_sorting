@@ -1,9 +1,9 @@
 package app.sort;
 
+import app.collection.BusCollection;
 import app.model.Bus;
 
 import java.util.Comparator;
-import java.util.List;
 
 /**
  * контекст паттерна стратегия. Подсовываем имя сортировки и одинаково везде
@@ -22,9 +22,9 @@ public class SortContext {
         this.strategy = strategy;
     }
 
-    public SortResult executeSort(List<Bus> input, Comparator<Bus> comparator) {
+    public SortResult executeSort(BusCollection input, Comparator<Bus> comparator) {
         long start = System.nanoTime();
-        List<Bus> sorted = strategy.sort(input, comparator);
+        BusCollection sorted = strategy.sort(input, comparator);
         long elapsed = System.nanoTime() - start;
         return new SortResult(sorted, elapsed, strategy.name());
     }

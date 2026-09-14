@@ -1,10 +1,10 @@
 package app.sort;
 
+import app.collection.BusCollection;
 import app.model.Bus;
 import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,12 +17,12 @@ class EvenOnlySortDecoratorTest {
         Bus bus3 = Bus.builder().regNumber("A125").model("Liaz").routeNumber(1).mileage(3000).build();
         Bus bus4 = Bus.builder().regNumber("A126").model("Liaz").routeNumber(1).mileage(4000).build();
 
-        List<Bus> loaded = List.of(bus1, bus2, bus3, bus4);
+        BusCollection loaded = BusCollection.of(bus1, bus2, bus3, bus4);
 
         EvenOnlySortDecorator decorator = new EvenOnlySortDecorator(new BubbleSortStrategy());
         Comparator<Bus> comparator = BusComparators.byField(app.model.BusField.MILEAGE);
 
-        List<Bus> result = decorator.sort(loaded, comparator);
+        BusCollection result = decorator.sort(loaded, comparator);
 
         // нечётные остались на своих исходных позициях
         assertEquals("A123", result.get(0).getRegNumber());

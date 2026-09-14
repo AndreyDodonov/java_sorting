@@ -1,8 +1,8 @@
 package app.sort;
 
 import java.util.Comparator;
-import java.util.List;
 
+import app.collection.BusCollection;
 import app.model.Bus;
 
 /**
@@ -32,14 +32,14 @@ public interface SortStrategy {
      *            компаратор для сравнения элементов (см. BusComparators.byField)
      * @return новый отсортированный список
      */
-    List<Bus> sort(List<Bus> input, Comparator<Bus> comparator);
+    BusCollection sort(BusCollection input, Comparator<Bus> comparator);
 
     /**
      * Название алгоритма — для вывода в консоли при сравнении времени выполнения.
      */
     String name();
 
-    default void swap(List<Bus> list, int i, int j) {
+    default void swap(BusCollection list, int i, int j) {
         Bus tmp = list.get(i);
         list.set(i, list.get(j));
         list.set(j, tmp);

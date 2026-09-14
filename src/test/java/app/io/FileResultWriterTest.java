@@ -1,5 +1,6 @@
 package app.io;
 
+import app.collection.BusCollection;
 import app.model.Bus;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -35,7 +36,7 @@ class FileResultWriterTest {
 
         FileResultWriter writer = new FileResultWriter();
 
-        writer.appendResults(List.of(bus1, bus2), file.toString());
+        writer.appendResults(BusCollection.of(bus1, bus2), file.toString());
 
         List<String> lines = Files.readAllLines(file);
 

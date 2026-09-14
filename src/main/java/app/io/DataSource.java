@@ -1,6 +1,6 @@
 package app.io;
 
-import app.model.Bus;
+import app.collection.BusCollection;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public interface DataSource {
      *            причины, по которым отдельные записи были отброшены (пустой
      *            список, если отбрасывать было нечего)
      */
-    record LoadResult(List<Bus> loaded, List<String> rejectedWarnings) {
+    record LoadResult(BusCollection loaded, List<String> rejectedWarnings) {
 
     }
 }

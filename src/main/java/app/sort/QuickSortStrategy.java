@@ -1,14 +1,14 @@
 package app.sort;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
+import app.collection.ArrayBusCollection;
+import app.collection.BusCollection;
 import app.model.Bus;
 
 public class QuickSortStrategy implements SortStrategy {
 
-    private int partition(List<Bus> list, int low, int high, Comparator<Bus> comparator) {
+    private int partition(BusCollection list, int low, int high, Comparator<Bus> comparator) {
         Bus pivotPoint = list.get(high);
         int i = low - 1;
         for (int j = low; j < high; j++) {
@@ -22,7 +22,7 @@ public class QuickSortStrategy implements SortStrategy {
         return i + 1;
     }
 
-    private void quickSort(List<Bus> list, int low, int high, Comparator<Bus> comparator) {
+    private void quickSort(BusCollection list, int low, int high, Comparator<Bus> comparator) {
         if (low < high) {
             int partitionIndex = partition(list, low, high, comparator);
             quickSort(list, low, partitionIndex - 1, comparator);
@@ -31,8 +31,8 @@ public class QuickSortStrategy implements SortStrategy {
     }
 
     @Override
-    public List<Bus> sort(List<Bus> input, Comparator<Bus> comparator) {
-        List<Bus> result = new ArrayList<>(input);
+    public BusCollection sort(BusCollection input, Comparator<Bus> comparator) {
+        BusCollection result = new ArrayBusCollection(input);
         int n = result.size();
         quickSort(result, 0, n - 1, comparator);
 
