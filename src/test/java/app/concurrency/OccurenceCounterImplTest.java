@@ -98,7 +98,7 @@ class OccurenceCounterImplTest {
     }
 
     @Test
-    void incorrectThreadCount_throwException() throws InterruptedException {
+    void incorrectThreadCount_throwException() {
         Bus bus1 = Bus.builder().regNumber("A123").model("Liaz").routeNumber(1).mileage(1000).build();
         Bus bus2 = Bus.builder().regNumber("A124").model("Liaz").routeNumber(1).mileage(2000).build();
         Bus bus3 = Bus.builder().regNumber("A125").model("Liaz").routeNumber(1).mileage(3000).build();
