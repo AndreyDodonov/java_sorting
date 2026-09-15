@@ -3,8 +3,7 @@ package app;
 import app.collection.BusCollection;
 import app.model.Bus;
 import app.model.BusField;
-import app.sort.BubbleSortStrategy;
-import app.sort.SortResult;
+import app.sort.*;
 import app.validation.ValidationException;
 import org.junit.jupiter.api.Test;
 
@@ -64,4 +63,70 @@ class MainTest {
         assertThrows(ValidationException.class, () -> MenuHandler.userInput(scanner));
     }
 
+    @Test
+    void userInput_withFileSource_readsFromFile() {
+        Scanner scanner = new Scanner("2\nsrc/test/resources/valid_buses.jsonl\n10\n3\n1\n1\n");
+
+        MenuHandler.UserInput input = MenuHandler.userInput(scanner);
+
+        assertEquals(2, input.loaded().size());
+    }
+
+    @Test
+    void countOccurrences_withValidRandomFlow_returnsNonNegativeCount() throws InterruptedException {
+        Scanner scanner = new Scanner("1\n10\n3\n5000\n2\n");
+
+        long result = MenuHandler.countOccurrences(scanner);
+
+        assertTrue(result >= 0);
+    }
+
+    @Test
+    void countOccurrences_withInvalidThreadCount_throwsValidationException() {
+        Scanner scanner = new Scanner("1\n10\n3\n5000\n0\n");
+
+        assertThrows(ValidationException.class, () -> MenuHandler.countOccurrences(scanner));
+    }
+
+    @Test
+    void userInput_withSelectionSortChoice_returnsSelectionSortStrategy() {
+        Scanner scanner = new Scanner("1\n5\n3\n2\n1\n");
+        MenuHandler.UserInput input = MenuHandler.userInput(scanner);
+        assertInstanceOf(SelectionSortStrategy.class, input.strategy());
+    }
+
+    @Test
+    void userInput_withInsertionSortChoice_returnsInsertionSortStrategy() {
+        Scanner scanner = new Scanner("1\n5\n3\n3\n1\n");
+        MenuHandler.UserInput input = MenuHandler.userInput(scanner);
+        assertInstanceOf(InsertionSortStrategy.class, input.strategy());
+    }
+
+    @Test
+    void userInput_withQuickSortChoice_returnsQuickSortStrategy() {
+        Scanner scanner = new Scanner("1\n5\n3\n4\n1\n");
+        MenuHandler.UserInput input = MenuHandler.userInput(scanner);
+        assertInstanceOf(QuickSortStrategy.class, input.strategy());
+    }
+
+    @Test
+    void userInput_withEvenOnlyMode_returnsDecoratedStrategy() {
+        Scanner scanner = new Scanner("1\n5\n3\n1\n2\n");
+        MenuHandler.UserInput input = MenuHandler.userInput(scanner);
+        assertInstanceOf(EvenOnlySortDecorator.class, input.strategy());
+    }
+
+    @Test
+    void countOccurrences_withRegNumberField_returnsResult() throws InterruptedException {
+        Scanner scanner = new Scanner("1\n10\n1\nA123\n2\n");
+        long result = MenuHandler.countOccurrences(scanner);
+        assertTrue(result >= 0);
+    }
+
+    @Test
+    void countOccurrences_withModelField_returnsResult() throws InterruptedException {
+        Scanner scanner = new Scanner("1\n10\n2\nLiaz\n2\n");
+        long result = MenuHandler.countOccurrences(scanner);
+        assertTrue(result >= 0);
+    }
 }
