@@ -1,5 +1,7 @@
 package app.io;
 
+import app.collection.ArrayBusCollection;
+import app.collection.BusCollection;
 import app.model.Bus;
 import app.validation.ValidationException;
 
@@ -18,7 +20,7 @@ public class RandomDataSource implements DataSource {
 
     @Override
     public LoadResult load(int count) {
-        List<Bus> loaded = new ArrayList<>();
+        BusCollection loaded = new ArrayBusCollection();
         List<String> rejectedWarnings = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {

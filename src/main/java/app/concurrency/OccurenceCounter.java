@@ -1,9 +1,7 @@
 package app.concurrency;
 
-import app.model.Bus;
+import app.collection.BusCollection;
 import app.model.BusField;
-
-import java.util.List;
 
 /**
  * Владелец модуля: впиши своё имя/ник на гитхабе, Доп. задание 4 —
@@ -12,5 +10,5 @@ import java.util.List;
  * результаты суммируются.
  */
 public interface OccurenceCounter {
-    long count(List<Bus> data, BusField field, Object targetValue, int threadCount) throws InterruptedException;
+    long count(BusCollection data, BusField field, Object targetValue, int threadCount) throws InterruptedException;
 }

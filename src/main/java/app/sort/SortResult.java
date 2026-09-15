@@ -1,13 +1,11 @@
 package app.sort;
 
-import app.model.Bus;
-
-import java.util.List;
+import app.collection.BusCollection;
 
 /**
  * Результат одного прогона сортировки и времени выполнения
  */
-public record SortResult(List<Bus> sorted, long elapsedNanoSec, String algoName) {
+public record SortResult(BusCollection sorted, long elapsedNanoSec, String algoName) {
 
     // в миллисекундах
     public double elapsedTimeInMS() {

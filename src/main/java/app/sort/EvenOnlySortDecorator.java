@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import app.collection.BusCollection;
+import app.collection.ArrayBusCollection;
 import app.model.Bus;
 
 public class EvenOnlySortDecorator implements SortStrategy {
@@ -15,12 +17,12 @@ public class EvenOnlySortDecorator implements SortStrategy {
     }
 
     @Override
-    public List<Bus> sort(List<Bus> input, Comparator<Bus> comparator) {
+    public BusCollection sort(BusCollection input, Comparator<Bus> comparator) {
 
-        List<Bus> result = new ArrayList<>(input);
+        BusCollection result = new ArrayBusCollection(input);
         int n = result.size();
 
-        List<Bus> evenBuses = new ArrayList<>();
+        BusCollection evenBuses = new ArrayBusCollection();
         List<Integer> evenPositions = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {

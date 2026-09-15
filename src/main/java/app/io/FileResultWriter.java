@@ -1,5 +1,6 @@
 package app.io;
 
+import app.collection.BusCollection;
 import app.model.Bus;
 import com.google.gson.Gson;
 
@@ -8,7 +9,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.List;
 
 public class FileResultWriter implements ResultWriter {
 
@@ -19,7 +19,7 @@ public class FileResultWriter implements ResultWriter {
     }
 
     @Override
-    public void appendResults(List<Bus> sorted, String filePath) throws IOException {
+    public void appendResults(BusCollection sorted, String filePath) throws IOException {
         try (BufferedWriter writer = Files.newBufferedWriter(Path.of(filePath), StandardOpenOption.CREATE,
                 StandardOpenOption.APPEND)) {
 

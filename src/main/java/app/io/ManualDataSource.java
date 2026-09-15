@@ -1,9 +1,10 @@
 package app.io;
 
+import app.collection.ArrayBusCollection;
+import app.collection.BusCollection;
 import app.model.Bus;
 import app.validation.ValidationException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,7 +26,7 @@ public class ManualDataSource implements DataSource {
 
     @Override
     public LoadResult load(int count) {
-        List<Bus> loaded = new ArrayList<>();
+        BusCollection loaded = new ArrayBusCollection();
 
         while (loaded.size() < count) {
             System.out.println("\nВвод автобуса №" + (loaded.size() + 1));

@@ -1,6 +1,5 @@
 package app;
 
-import java.util.List;
 import java.util.Scanner;
 
 import app.collection.BusCollection;
@@ -10,7 +9,6 @@ import app.io.DataSource;
 import app.io.FileDataSource;
 import app.io.ManualDataSource;
 import app.io.RandomDataSource;
-import app.model.Bus;
 import app.model.BusField;
 import app.sort.BubbleSortStrategy;
 import app.sort.BusComparators;
@@ -30,13 +28,13 @@ import app.validation.ValidationException;
  */
 @SuppressWarnings("java:S106")
 public class MenuHandler {
-    public record UserInput(SortStrategy strategy, BusField field, List<Bus> loaded) {
+    public record UserInput(SortStrategy strategy, BusField field, BusCollection loaded) {
 
     }
 
     // обрабатываем пользовательский ввод
     public static UserInput userInput(Scanner userInputScanner) {
-        List<Bus> loaded = selectSource(userInputScanner);
+        BusCollection loaded = selectSource(userInputScanner);
         BusField field = selectFieldSort(userInputScanner);
         SortStrategy strategy = selectAlgorithm(userInputScanner);
         if (field == BusField.MILEAGE) {
@@ -46,7 +44,7 @@ public class MenuHandler {
     }
 
     // выбор источника
-    private static List<Bus> selectSource(Scanner userInputScanner) {
+    private static BusCollection selectSource(Scanner userInputScanner) {
         System.out.println("Источник данных: \n 1 - рандом \n 2 - файл \n 3 - вручную");
         int choice = Integer.parseInt(userInputScanner.nextLine().trim());
         DataSource dataSource = switch (choice) {
@@ -116,14 +114,13 @@ public class MenuHandler {
     }
 
     // сортируем и отдаём отсортированный результат
-    public static SortResult sortData(SortStrategy strategy, BusField field, List<Bus> loaded) {
-        List<Bus> data = BusCollection.fromStream(loaded.stream()).toList();
+    public static SortResult sortData(SortStrategy strategy, BusField field, BusCollection loaded) {
         SortContext sortContext = new SortContext(strategy);
-        return sortContext.executeSort(data, BusComparators.byField(field));
+        return sortContext.executeSort(loaded, BusComparators.byField(field));
     }
 
     public static long countOccurrences(Scanner userInputScanner) throws InterruptedException {
-        List<Bus> data = selectSource(userInputScanner);
+        BusCollection data = selectSource(userInputScanner);
         BusField field = selectFieldSort(userInputScanner);
         Object targetValue = askTargetValue(userInputScanner, field);
         int threadCount = askThreadCount(userInputScanner);

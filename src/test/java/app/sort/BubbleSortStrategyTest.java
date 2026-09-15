@@ -1,11 +1,10 @@
 package app.sort;
 
+import app.collection.ArrayBusCollection;
+import app.collection.BusCollection;
 import app.model.Bus;
 import app.model.BusField;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -18,7 +17,7 @@ class BubbleSortStrategyTest {
         Bus bus3 = Bus.builder().regNumber("A125").model("Liaz").routeNumber(14).mileage(3000).build();
 
         SortContext sortContext = new SortContext(new BubbleSortStrategy());
-        List<Bus> data = new ArrayList<>();
+        BusCollection data = new ArrayBusCollection();
 
         data.add(bus1);
         data.add(bus2);
@@ -27,7 +26,7 @@ class BubbleSortStrategyTest {
         BusField field = BusField.MILEAGE;
         SortResult sorted = sortContext.executeSort(data, BusComparators.byField(field));
 
-        List<Bus> result = sorted.sorted();
+        BusCollection result = sorted.sorted();
 
         assertTrue(result.get(0).getMileage() <= result.get(1).getMileage());
         assertTrue(result.get(1).getMileage() <= result.get(2).getMileage());

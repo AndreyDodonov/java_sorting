@@ -1,9 +1,8 @@
 package app.io;
 
-import app.model.Bus;
+import app.collection.BusCollection;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Владелец модуля: впиши имя/ник на гитхабе Доп. задание 2 запись результатов
@@ -22,5 +21,5 @@ public interface ResultWriter {
      * @throws IOException
      *             при ошибке доступа к файлу (нет прав, диск занят и т.д.)
      */
-    void appendResults(List<Bus> sorted, String filePath) throws IOException;
+    void appendResults(BusCollection sorted, String filePath) throws IOException;
 }

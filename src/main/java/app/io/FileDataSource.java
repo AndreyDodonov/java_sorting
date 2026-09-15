@@ -1,5 +1,7 @@
 package app.io;
 
+import app.collection.ArrayBusCollection;
+import app.collection.BusCollection;
 import app.model.Bus;
 import app.validation.ValidationException;
 import com.google.gson.Gson;
@@ -29,7 +31,7 @@ public class FileDataSource implements DataSource {
 
     @Override
     public LoadResult load(int count) {
-        List<Bus> loaded = new ArrayList<>();
+        BusCollection loaded = new ArrayBusCollection();
         List<String> rejectedWarnings = new ArrayList<>();
 
         try (BufferedReader reader = Files.newBufferedReader(Path.of(path))) {
